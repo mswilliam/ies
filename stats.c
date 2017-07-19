@@ -37,7 +37,69 @@ void main() {
 
   /* Other Variable Declarations Go Here */
   /* Statistics and Printing Functions Go Here */
+	print_array(test, SIZE);
+	printf("\nmin :\t%u", *(test + find_minimum_index(test, SIZE)));
+	printf("\nmax :\t%u", *(test + find_maximum_index(test, SIZE)));
+	printf("\nmean :\t%f", find_mean(test, SIZE));
+	printf("\nmedian :\t%u\n", find_median(test, SIZE));
+	print_array(test, SIZE);
+}
 
+
+void print_array(unsigned char* t, unsigned char n){
+	printf("\n%u", *t);
+	for(unsigned char i = 1; i < n; ++i){
+		if(i % 10 == 0)
+			printf("\n%u", *(t + i));
+		else
+			printf(",\t%u", *(t + i));
+	}
+	printf("\n");
+}
+
+unsigned char find_minimum_index(unsigned char* t, unsigned char n){
+	unsigned char index = 0;
+	for(unsigned char i = 1; i < n; ++i){
+		if(*(t + i) < *(t + index))
+			index = i;
+	}
+	return index;
+}
+
+unsigned char find_maximum_index(unsigned char* t, unsigned char n){
+	unsigned char index = 0;
+	for(unsigned char i = 1; i < n; ++i){
+		if(*(t + i) > *(t + index))
+			index = i;
+	}
+	return index;
+}
+
+double find_mean(unsigned char* t, unsigned char n){
+	double mean = 0.0;
+	for(unsigned char i = 0; i < n; ++i){
+		mean += *(t + i);
+	}
+	return mean / n;
+}
+
+void swap(unsigned char* t, unsigned char n, unsigned char m){
+	unsigned char tmp = *(t + n);
+	*(t + n) = *(t + m);
+	*(t + m) = tmp;
+}
+
+void sort_array(unsigned char* t, unsigned char n){
+	unsigned char index =0;
+	for(unsigned char i = 0; i < n - 1; ++i){
+		index = find_maximum_index(t + i, n -i);
+		swap(t + i, 0, index);
+	}
+}
+
+unsigned char find_median(unsigned char* t, unsigned char n){
+	sort_array(t, n);
+	return *(t + (n / 2));
 }
 
 /* Add other Implementation File Code Here */
