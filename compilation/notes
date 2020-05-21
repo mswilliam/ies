@@ -1,4 +1,3 @@
 Will show all tools in the Cross-Compiler Toolchain
   $ ls -la /usr/bin/arm-none-eabi*
 
-
