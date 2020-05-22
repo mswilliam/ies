@@ -1,3 +1,45 @@
 Will show all tools in the Cross-Compiler Toolchain
-  $ ls -la /usr/bin/arm-none-eabi*
+  ls -la /usr/bin/arm-none-eabi*
+What gcc version is curently installed
+  gcc --version
+What is the location of installation
+  which gcc
+How to use gcc
+  man gcc
+
+Compilation
+  In/Out      Step           Tool     gcc option
+  .h, .c
+  .i          Preprocessor    gcc
+  .s          Compiler        gcc  
+  .o          Assemble        as      -c
+  Reloc       Linker          ld
+  exe file    Locater         ld      -o
+
+gcc [OPTIONS] [FILE]
+  Opion & Format    Purpose
+  -C                Compile and assembleFile, Do not link
+  -o <FILE>         Compile, Assemble, and Link to OUTPUT_FILE
+  -g                Generate Gebugging Informations in executable
+  -Wall             Enable All Warning Messages
+  -Werror           Treat All Warnings as Errors
+  -I<DIR>           Include this <DIR> to Look for Header Files
+  -ansi             
+  -std=STANDARD     Specify which standard version to use (ex: c89, c99)
+  -v                Verbose Output from GCC
+
+gcc -std=c99 -Werror -o main.out main.c
+
+arm-none-eabi-gcc main.c -o main.out --spec=nosys.specs -std=c99 -mcpu=cortex-m0plus -mthumb -Werror
+
+arm-none-eabi-gcc [OPTIONS] [FILE]
+  Option & Format     Purpose
+  -mcpu=[NAME]        Specifies Target ARM Processor and Architecture(ex: cortex-m0plus)
+  -march=[NAME]       Target ARM Architecture (ex: armv7-m, thumb)
+  -mtune=[NAME]       Target ARM Procesor(ex: cortex-m0plus)
+  -mthumb             Generate code in Thumb States (ISA)
+  -marm               Generate code in ARM State (ISA)
+  -mthumb-interwork   Generate code that supports calling beteween ARM and Thumb
+  -mlittle-endian     Generate code for Little Endian Mode
+  -mbig-endian        Generate code for Big Endian Mode
 
